@@ -85,6 +85,7 @@ let StartingScene = new Phaser.Class({
             const y = Phaser.Math.RND.between(50, this.physics.world.bounds.height -50 );
             params.slimeType = Phaser.Math.RND.between(0, 4);
             const slime = this.characterFactory.buildSlime(x, y, params);
+            slime.selectTarget(this.player);
             this.slimes.add(slime);
             this.physics.add.collider(slime, worldLayer);
             this.gameObjects.push(slime);
