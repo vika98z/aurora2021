@@ -11,6 +11,7 @@ import slimeSpriteSheet from '../assets/sprites/characters/slime.png'
 import CharacterFactory from "../src/characters/character_factory";
 import Footsteps from "../assets/audio/footstep_ice_crunchy_run_01.wav";
 
+
 let StartingScene = new Phaser.Class({
 
     Extends: Phaser.Scene,
@@ -36,6 +37,7 @@ let StartingScene = new Phaser.Class({
         this.load.spritesheet('punk', punkSpriteSheet, this.characterFrameConfig);
         this.load.spritesheet('slime', slimeSpriteSheet, this.slimeFrameConfig);
         this.load.audio('footsteps', Footsteps);
+        this.load.glsl('fire', "./shaders/sample.frag");
     },
     create: function () {
 
@@ -69,6 +71,8 @@ let StartingScene = new Phaser.Class({
         worldLayer.setCollisionBetween(1, 500);
         aboveLayer.setDepth(10);
 
+
+
         this.physics.world.bounds.width = map.widthInPixels;
         this.physics.world.bounds.height = map.heightInPixels;
         this.characterFactory = new CharacterFactory(this);
@@ -100,6 +104,8 @@ let StartingScene = new Phaser.Class({
                 .setAlpha(0.75)
                 .setDepth(20);
         });
+        this.fire = this.add.shader('fire', 300, 50, 400, 400);
+
     },
     update: function () {
         if (this.gameObjects)
