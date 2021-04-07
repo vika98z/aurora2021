@@ -6,9 +6,8 @@ import BaseFuzzyFunction from "./BaseFuzzyFunction";
  * For right trapezoid (e.g. non-equal lBorder.y and rBorder.y) create separate class
  */
 class Table extends BaseFuzzyFunction {
-	constructor(args) {
+	constructor({lBorder, rBorder}) {
 		super();
-		const {lBorder, rBorder} = args;
 		this.lBorder = lBorder;
 		this.rBorder = rBorder;
 		if (rBorder.y !== lBorder.y) {
