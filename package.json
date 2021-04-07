@@ -10,7 +10,8 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.5.5",
-    "parcel": "^1.12.4"
+    "parcel": "^1.12.4",
+    "parcel-plugin-static-files-copy": "^2.6.0"
   },
   "dependencies": {
     "characters": "0.0.2",
