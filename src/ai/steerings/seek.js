@@ -8,12 +8,6 @@ class Seek extends Steering {
         this.targetSpeed = targetSpeed
     }
 
-    normalie(vector) {
-        const x = (Math.abs(vector.x) < this.ownerSpeed) ? vector.x : Math.sign(vector.x)*this.ownerSpeed;
-        const y = (Math.abs(vector.y) < this.ownerSpeed) ? vector.y : Math.sign(vector.y)*this.ownerSpeed;
-        return new Vector2(x, y);
-    }
-
     calculateImpulse () {
         const searcherDirection = this.owner.body.velocity;
         const target = this._target === undefined ? this.objects[0] : this._target;
