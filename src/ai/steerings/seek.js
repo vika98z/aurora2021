@@ -8,22 +8,28 @@ class Seek extends Steering {
         this.targetSpeed = targetSpeed
     }
 
+    normalie(vector) {
+        const x = (Math.abs(vector.x) < this.ownerSpeed) ? vector.x : Math.sign(vector.x)*this.ownerSpeed;
+        const y = (Math.abs(vector.y) < this.ownerSpeed) ? vector.y : Math.sign(vector.y)*this.ownerSpeed;
+        return new Vector2(x, y);
+    }
+
     calculateImpulse () {
         const searcherDirection = this.owner.body.velocity;
         const target = this._target === undefined ? this.objects[0] : this._target;
-        const targetDirection = target.body.velocity;
-        const desiredVelocity = new Vector2(this.owner.x - target.x, this.owner.y - target.y);
+        const desiredVelocity = new Vector2(target.x - this.owner.x, target.y - this.owner.y)
+            .normalize()
+            .multiply(new Vector2(this.ownerSpeed, this.ownerSpeed));
         
-        const toTarget = new Vector2(
-            -(desiredVelocity.x - searcherDirection.x) / 5,//this.owner.body.mass, 
-            -(desiredVelocity.y - searcherDirection.y) / 5);//this.owner.body.mass);
+        let steering = new Vector2(
+            (desiredVelocity.x - searcherDirection.x),
+            (desiredVelocity.y - searcherDirection.y));
 
-        if (isNaN(toTarget.x))
-            return [0, 0];
-        const x = (Math.abs(toTarget.x) < 1) ? 0 : -Math.sign(toTarget.x)*this.ownerSpeed;
-        const y = (Math.abs(toTarget.y) < 1) ? 0 : -Math.sign(toTarget.y)*this.ownerSpeed;
+        if (steering.length() > this.ownerSpeed) {
+            steering.normalize().multiply(new Vector2(this.ownerSpeed, this.ownerSpeed));
+        }
 
-        return toTarget; //new Vector2(x, y);
+        return steering;//new Vector2(x, y);
 
     }
 
