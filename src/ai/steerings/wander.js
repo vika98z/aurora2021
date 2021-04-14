@@ -34,6 +34,10 @@ class Wander extends Steering {
         this._target = target;
     }
 
+    setObstacles(obstacles) {
+
+    }
+
     rotate(vector, value) {
         return new Vector2(
             Math.cos(value) * vector.length(),

@@ -7,13 +7,15 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite{
         scene.add.existing(this);
     }
     update() {
-        if (this.hasArrived())
-        {
-            console.log(this.target.position);
-        } else {
-            const velocity = this.steering.calculateImpulse();
-            this.body.setVelocity(velocity.x, velocity.y);
-        }
+        
+            let velocity = new Vector2(0, 0);
+            this.steerings.forEach(steering => {
+                velocity = velocity.add(steering.calculateImpulse())
+            });
+            let newVelocity = velocity
+                .normalize()
+                .multiply(new Vector2(this.speed, this.speed));
+            this.body.setVelocity(newVelocity.x, newVelocity.y);
 
         this.updateAnimation();
     }
@@ -44,9 +46,17 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite{
     }
     selectTarget(target) {
         this.target = target;
-        this.steering.setTarget(target);
+        this.steerings.forEach(steering => steering.setTarget(target));
+    }
+    setObstacles(obstacles) {
+        this.steerings.forEach(steering => { 
+            steering.setObstacles(obstacles);
+        });
     }
     setSteering(steering) {
-        this.steering = steering;
+        this.steerings = [ steering ];
+    }
+    setSteerings(steerings) {
+        this.steerings = steerings;
     }
 }

@@ -9,7 +9,7 @@ class Seek extends Steering {
     }
 
     calculateImpulse () {
-        const searcherDirection = this.owner.body.velocity;
+        const searcherDirection = this.owner.body.velocity.clone();
         const target = this._target === undefined ? this.objects[0] : this._target;
         const desiredVelocity = new Vector2(target.x - this.owner.x, target.y - this.owner.y)
             .normalize()

@@ -81,7 +81,7 @@ let StartingScene = new Phaser.Class({
 
         this.slimes =  this.physics.add.group();
         let params = {};
-        for(let i = 0; i < 5; i++) {
+        for(let i = 0; i < 10; i++) {
             const x = Phaser.Math.RND.between(50, this.physics.world.bounds.width - 50 );
             const y = Phaser.Math.RND.between(50, this.physics.world.bounds.height -50 );
             params.slimeType = Phaser.Math.RND.between(0, 4);
@@ -92,8 +92,11 @@ let StartingScene = new Phaser.Class({
             this.gameObjects.push(slime);
         }
         this.physics.add.collider(this.player, this.slimes);
-        for (let i = 0; i < this.slimes.length; i++) {
-            this.physics.add.collider(this.slimes[i], this.slimes);
+        for (let i = 0; i < this.slimes.children.entries.length; i++) {
+            this.physics.add.collider(this.slimes.children.entries[i], this.slimes);
+            let otherSlimes = this.slimes.children.entries.slice();
+            otherSlimes.splice(i, 1);
+            this.slimes.children.entries[i].setObstacles([this.player]);
         }
 
         this.input.keyboard.once("keydown_D", event => {
