@@ -10,6 +10,8 @@ import greenSpriteSheet from '../assets/sprites/characters/green.png'
 import slimeSpriteSheet from '../assets/sprites/characters/slime.png'
 import CharacterFactory from "../src/characters/character_factory";
 import Footsteps from "../assets/audio/footstep_ice_crunchy_run_01.wav";
+import { DecisionController } from "../src/DecisionController";
+import UsualRules from "../src/rules/usual";
 
 
 let StartingScene = new Phaser.Class({
@@ -79,7 +81,7 @@ let StartingScene = new Phaser.Class({
 
         // Creating characters
         this.player = this.characterFactory.buildCharacter('aurora', 100, 100, {player: true});
-        this.gameObjects.push(this.player);
+        //this.gameObjects.push(this.player);
         this.physics.add.collider(this.player, worldLayer);
 
         this.slimes =  this.physics.add.group();
@@ -93,6 +95,11 @@ let StartingScene = new Phaser.Class({
             this.physics.add.collider(slime, worldLayer);
             this.gameObjects.push(slime);
         }
+
+        //adding controller
+        this.controller = new DecisionController(new UsualRules(), this.player, this.gameObjects)
+        this.controller.setScales();
+
         this.physics.add.collider(this.player, this.slimes);
 
         this.input.keyboard.once("keydown_D", event => {
@@ -108,6 +115,9 @@ let StartingScene = new Phaser.Class({
 
     },
     update: function () {
+        //changing states of slimes
+        this.controller.setState();
+        this.player.update();
         if (this.gameObjects)
         {
             this.gameObjects.forEach( function(element) {
