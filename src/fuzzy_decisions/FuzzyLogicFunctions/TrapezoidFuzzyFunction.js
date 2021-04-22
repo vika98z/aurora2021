@@ -3,7 +3,7 @@ import BaseFuzzyFunction from "./BaseFuzzyFunction";
 /**
  *  Trapezoid function (from point1, point2, point3, point4) 
  */
-class TriangleFuzzyFunction extends BaseFuzzyFunction {
+class TrapezoidFuzzyFunction extends BaseFuzzyFunction {
 
     /**
     *  The conctructor takes four points:
@@ -44,4 +44,4 @@ class TriangleFuzzyFunction extends BaseFuzzyFunction {
 	}
 }
 
-export default TriangleFuzzyFunction;
+export default TrapezoidFuzzyFunction;
