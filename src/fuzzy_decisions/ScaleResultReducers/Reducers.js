@@ -1,4 +1,8 @@
 import MaxReducer from "./MaxReducer";
+import MinReducer from "./MinReducer";
+import MedianReducer from "./MedianReducer";
+import RandomWithWeightsReducer from "./RandomWithWeightsReducer";
+import MaxGroupReducer from "./MaxGroupReducer"
 
 class Reducers {
 	constructor() {
@@ -6,6 +10,22 @@ class Reducers {
 			{
 				type: "max",
 				reducer: new MaxReducer()
+			},
+			{
+				type: "min",
+				reducer: new MinReducer()
+			},
+			{
+				type: "median",
+				reducer: new MedianReducer()
+			},
+			{
+				type: "random",
+				reducer: new RandomWithWeightsReducer()
+			},
+			{
+				type: "maxGroup",
+				reducer: new MaxGroupReducer()
 			}
 		];
 	}
@@ -13,7 +33,7 @@ class Reducers {
 	get(type) {
 		const result = this.reducers.find(r => r.type === type);
 		if (!result) {
-			// TODO: throw Error
+			throw Error("Can't find this type of reducer!");
 		}
 		return result.reducer;
 	}
