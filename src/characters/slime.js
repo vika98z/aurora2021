@@ -5,9 +5,11 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite{
         super(scene, x, y, name, frame);
         scene.physics.world.enable(this);
         scene.add.existing(this);
+        this.steerings = [];
     }
+
     update() {
-        if (this.hasArrived())
+    /*    if (this.hasArrived())
         {
             console.log("Slime thinks: 'Where should I go?...'");
             this.pointOfInterest = new Vector2( Phaser.Math.RND.between(0, this.scene.physics.world.bounds.width - 1),
@@ -54,10 +56,18 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite{
                 }
                 this.body.velocity.normalize().scale(Math.min(Math.abs(delta), this.speed));
             }
-        }
+        }//*/
+        let velocity = new Vector2();
+        this.steerings.forEach(steering => velocity.add(steering.calculateImpulse()));
+        let newCoord = velocity.multiply(this.speed);
+        this.x += newCoord.x;
+        this.y += newCoord.y;
+       // this.x += velocity.x;
+       // this.y += velocity.y;
 
         this.updateAnimation();
     }
+
     updateAnimation() {
         const animsController = this.anims;
         if (this.wantToJump)
@@ -73,6 +83,7 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite{
     {
         return this.pointOfInterest === undefined || this.pointOfInterest.distance(this.body.position) < eps;
     }
+
     selectNextLocation() {
         const nextTile = this.path.shift();
         if (nextTile)
@@ -82,5 +93,9 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite{
         {
             this.nextLocation = this.body.position;
         }
+    }
+
+    setSteerings(steerings){
+        this.steerings = steerings;
     }
 }
