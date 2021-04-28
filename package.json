@@ -15,7 +15,9 @@
   },
   "dependencies": {
     "characters": "0.0.2",
-    "easystarjs": "^0.4.4",
-    "phaser": "^3.54.0"
+    "core-js": "^3.10.0",
+    "easystarjs": "^0.4.3",
+    "jest": "^26.6.3",
+    "phaser": "^3.20.1"
   }
 }

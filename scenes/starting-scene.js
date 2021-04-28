@@ -17,6 +17,8 @@ import {Pursuit} from "../src/ai/steerings/pursuit";
 import {Separation} from "../src/ai/steerings/separation";
 import {Evade} from "../src/ai/steerings/evade";
 import {LeaderFollowing} from "../src/ai/steerings/leaderFollowing";
+import { DecisionController } from "../src/DecisionController";
+import UsualRules from "../src/rules/usual";
 
 
 let StartingScene = new Phaser.Class({
@@ -115,6 +117,11 @@ let StartingScene = new Phaser.Class({
             this.physics.add.collider(slime, worldLayer);
             this.gameObjects.push(slime);
         }
+
+        //adding controller
+        this.controller = new DecisionController(new UsualRules(), this.player, this.gameObjects)
+        this.controller.setScales();
+
         this.physics.add.collider(this.player, this.slimes);
 
     //    this.input.keyboard.once("keydown_D", event => {
@@ -130,6 +137,9 @@ let StartingScene = new Phaser.Class({
 
     },
     update: function () {
+        //changing states of slimes
+        this.controller.setState();
+        this.player.update();
         if (this.gameObjects)
         {
             this.gameObjects.forEach( function(element) {
