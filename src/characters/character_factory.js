@@ -4,6 +4,8 @@ import Player from "./player";
 import cyberpunkConfigJson from "../../assets/animations/cyberpunk.json";
 import slimeConfigJson from "../../assets/animations/slime.json";
 import AnimationLoader from "../utils/animation-loader";
+import Vector2 from "phaser/src/math/Vector2";
+import {Pursuit} from "../ai/steerings/pursuit";
 
 
 export default class CharacterFactory {
@@ -83,9 +85,11 @@ export default class CharacterFactory {
         let slime = new Slime(this.scene, x, y, this.slimeSpriteSheet, 9 * slimeType);
         slime.animations = this.animationLibrary.get(this.slimeSpriteSheet).get(this.slimeNumberToName(slimeType));
         slime.setCollideWorldBounds(true);
-        slime.speed = 40;
+       // slime.speed = new Vector2(Phaser.Math.RND.between(1, 10) / 10.0, Phaser.Math.RND.between(1, 10) / 10.0);
+        slime.speed = new Vector2(0.5, 0.5);
         return slime;
     }
+
     slimeNumberToName(n)
     {
         switch (n) {
