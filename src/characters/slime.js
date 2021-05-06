@@ -5,6 +5,7 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite{
         super(scene, x, y, name, frame);
         scene.physics.world.enable(this);
         scene.add.existing(this);
+        this.steerings = [];
     }
     update() {
         

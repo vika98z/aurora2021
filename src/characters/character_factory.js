@@ -4,9 +4,6 @@ import Player from "./player";
 import cyberpunkConfigJson from "../../assets/animations/cyberpunk.json";
 import slimeConfigJson from "../../assets/animations/slime.json";
 import AnimationLoader from "../utils/animation-loader";
-import { Seek } from '../ai/steerings/seek';
-import { Wander } from '../ai/steerings/wander';
-import { CollisionAvoidance } from '../ai/steerings/collisionAvoidance';
 
 
 export default class CharacterFactory {
@@ -87,10 +84,6 @@ export default class CharacterFactory {
         slime.animations = this.animationLibrary.get(this.slimeSpriteSheet).get(this.slimeNumberToName(slimeType));
         slime.setCollideWorldBounds(true);
         slime.speed = 40;
-        slime.setSteerings([
-            new Wander(slime, [], 10, 40, 50),
-            new CollisionAvoidance(slime, [], 10, 40, 50)
-        ]);
         return slime;
     }
     slimeNumberToName(n)

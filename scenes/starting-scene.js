@@ -12,6 +12,11 @@ import CharacterFactory from "../src/characters/character_factory";
 import Footsteps from "../assets/audio/footstep_ice_crunchy_run_01.wav";
 import Vector2 from "phaser/src/math/Vector2";
 
+
+import { Seek } from '../src/ai/steerings/seek';
+import { Wander } from '../src/ai/steerings/wander';
+import { CollisionAvoidance } from '../src/ai/steerings/collisionAvoidance';
+
 let StartingScene = new Phaser.Class({
 
     Extends: Phaser.Scene,
@@ -86,7 +91,6 @@ let StartingScene = new Phaser.Class({
             const y = Phaser.Math.RND.between(50, this.physics.world.bounds.height -50 );
             params.slimeType = Phaser.Math.RND.between(0, 4);
             const slime = this.characterFactory.buildSlime(x, y, params);
-            slime.selectTarget(this.player);
             this.slimes.add(slime);
             this.physics.add.collider(slime, worldLayer);
             this.gameObjects.push(slime);
@@ -96,6 +100,12 @@ let StartingScene = new Phaser.Class({
             this.physics.add.collider(this.slimes.children.entries[i], this.slimes);
             let otherSlimes = this.slimes.children.entries.slice();
             otherSlimes.splice(i, 1);
+            this.slimes.children.entries[i].setSteerings([
+                new Wander(this.slimes.children.entries[i], [], 10, 40, 50),
+                new CollisionAvoidance(this.slimes.children.entries[i], [], 10, 40, 50)
+                //new Seek(slime, [], 10, 40, 50)
+            ]);
+            this.slimes.children.entries[i].selectTarget(this.player);
             this.slimes.children.entries[i].setObstacles([this.player]);
         }
 

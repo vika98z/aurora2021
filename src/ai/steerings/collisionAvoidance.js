@@ -10,8 +10,8 @@ class CollisionAvoidance extends Steering {
     }
 
     calculateImpulse () {
-        const MAX_AVOID_FORCE = this.ownerSpeed;
-        const MAX_SEE_AHEAD = this.ownerSpeed * 2;
+        const MAX_AVOID_FORCE = this.ownerSpeed * 10;
+        const MAX_SEE_AHEAD = this.ownerSpeed * 4;
 
         let ahead = this.owner.body.position.clone().add(
             this.owner.body.velocity
@@ -31,7 +31,6 @@ class CollisionAvoidance extends Steering {
         let avoidance = new Vector2(0, 0);
         let obstacle = this.getTargetObstacle(ahead, ahead2);
         if (obstacle) {
-            console.log('found obstacle', obstacle)
             avoidance.x = ahead.x - obstacle.body.position.x;
             avoidance.y = ahead.y - obstacle.body.position.y;
  

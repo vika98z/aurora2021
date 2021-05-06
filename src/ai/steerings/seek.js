@@ -30,6 +30,10 @@ class Seek extends Steering {
     setTarget(target) {
         this._target = target;
     }
+
+    setObstacles(obstacles) {
+        
+    }
 }
 
 export { Seek }
