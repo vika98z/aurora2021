@@ -11,6 +11,7 @@ export class DecisionController{
         this.player = player;
         this.slimes = slimes;
         this.funcs = [];
+        this.params = [];
     };
 
     setScales(){     
