@@ -5,6 +5,8 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
         super(scene, x, y, name, frame);
         scene.physics.world.enable(this);
         scene.add.existing(this);
+        this.state = "";
+        this.hp = 100;
         this.steerings = [];
     }
     
@@ -17,8 +19,6 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
                 .normalize()
                 .multiply(new Vector2(this.speed, this.speed));
             this.body.setVelocity(newVelocity.x, newVelocity.y);
-        this.state = "";
-        this.hp = 100;
 
         switch (this.state) {
             case 'rotate':
