@@ -13,13 +13,9 @@ import Footsteps from "../assets/audio/footstep_ice_crunchy_run_01.wav";
 
 import Vector2 from "phaser/src/math/Vector2";
 
-import {Arrive} from "../src/ai/steerings/arrive";
-import {Pursuit} from "../src/ai/steerings/pursuit";
-import {Separation} from "../src/ai/steerings/separation";
-import {Evade} from "../src/ai/steerings/evade";
 import {LeaderFollowing} from "../src/ai/steerings/leaderFollowing";
-import { DecisionController } from "../src/DecisionController";
-import UsualRules from "../src/rules/usual";
+import { DecisionController } from "../src/ai/fuzzy/DecisionController";
+import UsualRules from "../src/ai/fuzzy/rules/usual";
 
 
 

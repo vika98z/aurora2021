@@ -17,15 +17,15 @@ export class DecisionController{
             this.rules.params[0],
             [
                 {
-                    func: this.funcs[0],
+                    func: this.rules.funcs[0],
                     outcome: "rotate"
                 },
                 {
-                    func: this.funcs[1],
+                    func: this.rules.funcs[1],
                     outcome: "middle range"
                 },
                 {
-                    func: this.funcs[2],
+                    func: this.rules.funcs[2],
                     outcome: "rocket"
                 }
             ]
@@ -34,19 +34,19 @@ export class DecisionController{
             this.rules.params[1],
             [
                 {
-                    func: this.funcs[3],
+                    func: this.rules.funcs[3],
                     outcome: "short range"
                 },
                 {
-                    func: this.funcs[4],
+                    func: this.rules.funcs[4],
                     outcome: "rocket"
                 },
                 {
-                    func: this.funcs[5],
+                    func: this.rules.funcs[5],
                     outcome: "middle range"
                 },
                 {
-                    func: this.funcs[6],
+                    func: this.rules.funcs[6],
                     outcome: "get close"
                 }
             ]
@@ -55,11 +55,11 @@ export class DecisionController{
             this.rules.params[2],
             [
                 {
-                    func: this.funcs[7],
+                    func: this.rules.funcs[7],
                     outcome: "rocket"
                 },
                 {
-                    func: this.funcs[8],
+                    func: this.rules.funcs[8],
                     outcome: "middle range"
                 }
             ]
@@ -71,15 +71,15 @@ export class DecisionController{
         this.slimes.forEach(slime => {
             this.rules.input = [
             {
-                scaleName: this.params[0],
+                scaleName: this.rules.params[0],
                 value: slime.hp//hp for slime
             },
             {
-                scaleName: this.params[1],
+                scaleName: this.rules.params[1],
                 value: this.findDistance(slime)//distance between slime and aurora
             },
             {
-                scaleName: this.params[2],
+                scaleName: this.rules.params[2],
                 value: this.findDensity()//density of slimes near aurora
             }
         ];

@@ -10,7 +10,7 @@ class RightShoulderFuzzyFunction extends BaseFuzzyFunction {
     *  @param {number} p1 Point 1 (at y = 0)
     *  @param {number} p2 Point 2 (at y = 1)
     */
-	constructor({p1, p2}) {
+	constructor(p1, p2) {
 		super();
 		this.p1 = p1;
 		this.p2 = p2;

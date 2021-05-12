@@ -9,7 +9,7 @@ export default class UsualRules extends Rules{
         this.funcs = []
         this.input = []
         for (let i = 0; i<9; i++){
-            this.funcs.push(new LeftShoulderFuzzyFunction());
+            this.funcs.push(new LeftShoulderFuzzyFunction(1, 2));
         }
     }
 

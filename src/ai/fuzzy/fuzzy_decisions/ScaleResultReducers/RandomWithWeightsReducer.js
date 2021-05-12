@@ -8,7 +8,7 @@ const groupBy = key => array =>
   }, {});
 
   function custom_compare (a,b) {
-    // I'm assuming all probabilitys are numbers
+    // I'm assuming all probability are numbers
     return a.outcome - b.outcome;
   }
 

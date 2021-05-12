@@ -86,7 +86,7 @@ export default class CharacterFactory {
         slime.animations = this.animationLibrary.get(this.slimeSpriteSheet).get(this.slimeNumberToName(slimeType));
         slime.setCollideWorldBounds(true);
        // slime.speed = new Vector2(Phaser.Math.RND.between(1, 10) / 10.0, Phaser.Math.RND.between(1, 10) / 10.0);
-        slime.speed = new Vector2(0.5, 0.5);
+        slime.speed = new Vector2(20, 20);
         return slime;
     }
 
