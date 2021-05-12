@@ -1,13 +1,16 @@
 import tilemapPng from '../assets/tileset/Dungeon_Tileset.png'
 import menuBackgroundJson from '../assets/menu_background.json'
 
-
+//!!!!!!!!!!!!!Импортировать сцены здесь!!!!!!!!!!!!!!!!111
 import StartingScene from "./starting-scene";
 import SlimeRushScene from "./slime-rush";
+import ProcGenScene from "./proc-gen-scene";
 
+//!!!!!!!!!!!!!Добавлять сцены здесь!!!!!!!!!!!!!!!!111
 const scenes = [
     ['StartingScene', StartingScene],
-    ['SlimeRushScene', SlimeRushScene]
+    ['SlimeRushScene', SlimeRushScene],
+    ['ProcGenScene', ProcGenScene]
 ];
 
 let MenuScene = new Phaser.Class({
