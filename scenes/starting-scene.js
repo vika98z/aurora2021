@@ -10,8 +10,8 @@ import greenSpriteSheet from '../assets/sprites/characters/green.png'
 import slimeSpriteSheet from '../assets/sprites/characters/slime.png'
 import CharacterFactory from "../src/characters/character_factory";
 import Footsteps from "../assets/audio/footstep_ice_crunchy_run_01.wav";
-import { DecisionController } from "../src/DecisionController";
-import UsualRules from "../src/rules/usual";
+import { DecisionController } from "../src/ai/fuzzy/DecisionController";
+import UsualRules from "../src/ai/fuzzy/rules/usual";
 
 
 let StartingScene = new Phaser.Class({

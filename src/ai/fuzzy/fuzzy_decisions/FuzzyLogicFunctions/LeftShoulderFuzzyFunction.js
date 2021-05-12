@@ -7,8 +7,8 @@ class LeftShoulderFuzzyFunction extends BaseFuzzyFunction {
 
     /**
      * The constructor takes two points:
-     * @param {number} p1 Point 1 (at y = 1) 
-     * @param {number} p2 Point 2 (at y = 0) 
+     * @param {number} p1 x-coord 1 (at y = 1)
+     * @param {number} p2 x-coord 2 (at y = 0)
      */
     constructor({p1, p2}) {
 		super();
