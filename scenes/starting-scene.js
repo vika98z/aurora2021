@@ -18,7 +18,6 @@ import { DecisionController } from "../src/ai/fuzzy/DecisionController";
 import UsualRules from "../src/ai/fuzzy/rules/usual";
 
 
-
 let StartingScene = new Phaser.Class({
 
     Extends: Phaser.Scene,
@@ -121,6 +120,18 @@ let StartingScene = new Phaser.Class({
         this.controller.setScales();
 
         this.physics.add.collider(this.player, this.slimes);
+        for (let i = 0; i < this.slimes.children.entries.length; i++) {
+            this.physics.add.collider(this.slimes.children.entries[i], this.slimes);
+            let otherSlimes = this.slimes.children.entries.slice();
+            otherSlimes.splice(i, 1);
+            this.slimes.children.entries[i].setSteerings([
+                //new Wander(this.slimes.children.entries[i], [], 10, 40, 50),
+                //new CollisionAvoidance(this.slimes.children.entries[i], [], 10, 40, 50)
+                //new Seek(slime, [], 10, 40, 50)
+            ]);
+            this.slimes.children.entries[i].selectTarget(this.player);
+            this.slimes.children.entries[i].setObstacles([this.player]);
+        }
 
     //    this.input.keyboard.once("keydown_D", event => {
             // Turn on physics debugging to show player's hitbox
@@ -144,7 +155,6 @@ let StartingScene = new Phaser.Class({
                 element.update();
             });
         }
-
     },
     tilesToPixels(tileX, tileY)
     {
