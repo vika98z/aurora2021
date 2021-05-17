@@ -10,7 +10,7 @@ import ProcGenScene from "./proc-gen-scene";
 const scenes = [
     ['StartingScene', StartingScene],
     ['SlimeRushScene', SlimeRushScene],
-    ['ProcGenScene', ProcGenScene]
+    ['ProcedurallyGeneratedScene', ProcGenScene]
 ];
 
 let MenuScene = new Phaser.Class({
