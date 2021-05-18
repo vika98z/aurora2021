@@ -44,7 +44,7 @@ let ProcGenScene = new Phaser.Class({
         const layers = buildLevel(width, height, maxRooms, this);
         this.groundLayer = layers["Ground"];
         this.stuffLayer = layers["Stuff"];
-        this.outsideLayer = layers["Outside"];
+        this.wallsLayer = layers["Walls"];
 
         this.input.keyboard.once("keydown_D", event => {
             // Turn on physics debugging to show player's hitbox
