@@ -1,8 +1,11 @@
+import Vector2 from "phaser/src/math/Vector2"
+
 export default class Player extends Phaser.Physics.Arcade.Sprite{
-    constructor(scene, x, y, name, frame) {
+    constructor(scene, x, y, name, frame, sight = 100) {
         super(scene, x, y, name, frame);
         scene.physics.world.enable(this);
         scene.add.existing(this);
+        this.sight = sight;
     }
 
     update() {
@@ -15,6 +18,16 @@ export default class Player extends Phaser.Physics.Arcade.Sprite{
             body.velocity.x -= speed;
         } else if (cursors.right.isDown) {
             body.velocity.x += speed;
+        }
+
+        for (const slime of this.scene.slimes.children.entries) {
+            if (new Vector2(slime.x - this.x, slime.y - this.y).length() <= this.sight)
+                this.scene.messageBus.emit({
+                    'text': 'I see slime!',
+                    'topics': 'sight',
+                    'delay': 0,
+                    'author': 'Player'
+                });
         }
 
         // Vertical movement

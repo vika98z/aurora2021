@@ -10,6 +10,7 @@ import greenSpriteSheet from '../assets/sprites/characters/green.png'
 import slimeSpriteSheet from '../assets/sprites/characters/slime.png'
 import CharacterFactory from "../src/characters/character_factory";
 import Footsteps from "../assets/audio/footstep_ice_crunchy_run_01.wav";
+import MessageBus from "../src/MessageBus/MessageBus";
 
 
 let StartingScene = new Phaser.Class({
@@ -76,15 +77,19 @@ let StartingScene = new Phaser.Class({
         this.physics.world.bounds.width = map.widthInPixels;
         this.physics.world.bounds.height = map.heightInPixels;
         this.characterFactory = new CharacterFactory(this);
+        this.messageBus = new MessageBus();
+        this.messageBus.on(this, 'sight', (message) => {
+            console.log(`${message.author}: ${message.text}`)
+        });
 
         // Creating characters
         this.player = this.characterFactory.buildCharacter('aurora', 100, 100, {player: true});
         this.gameObjects.push(this.player);
         this.physics.add.collider(this.player, worldLayer);
 
-        this.slimes =  this.physics.add.group();
+        this.slimes = this.physics.add.group();
         let params = {};
-        for(let i = 0; i < 30; i++) {
+        for(let i = 0; i < 3; i++) {
             const x = Phaser.Math.RND.between(50, this.physics.world.bounds.width - 50 );
             const y = Phaser.Math.RND.between(50, this.physics.world.bounds.height -50 );
             params.slimeType = Phaser.Math.RND.between(0, 4);
