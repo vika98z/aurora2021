@@ -117,7 +117,7 @@ let StartingScene = new Phaser.Class({
 
         //adding controller
         this.controller = new DecisionController(new UsualRules(), this.player, this.gameObjects)
-        this.controller.setScales();
+        //this.controller.setScales();
 
         this.physics.add.collider(this.player, this.slimes);
         for (let i = 0; i < this.slimes.children.entries.length; i++) {
@@ -142,12 +142,12 @@ let StartingScene = new Phaser.Class({
                 .setAlpha(0.75)
                 .setDepth(20);
       //  });
-    //    this.fire = this.add.shader('fire', 300, 50, 400, 400);
+        this.fire = this.add.shader('fire', 300, 50, 400, 400);
 
     },
     update: function () {
         //changing states of slimes
-        this.controller.setState();
+        //this.controller.setState();
         this.player.update();
         if (this.gameObjects)
         {
